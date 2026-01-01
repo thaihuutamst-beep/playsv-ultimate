@@ -1,0 +1,26 @@
+# PlaySV Ultimate - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Web Framework
+Flask==3.0.0
+Flask-CORS==4.0.0
+Flask-SocketIO==5.3.5
+
+# WebSocket Support
+python-socketio==5.10.0
+python-engineio==4.8.0
+
+# Async Support
+eventlet==0.33.3
+
+# Video Processing (optional - for advanced features)
+# Requires FFmpeg installed on system
+# python-mpv==1.0.5
+
+# Utils
+Pillow==10.1.0
+requests==2.31.0
+
+# For production deployment (optional)
+gunicorn==21.2.0
+gevent==23.9.1
