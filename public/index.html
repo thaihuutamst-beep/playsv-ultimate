@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PWA Media Server - Home Theater Controller">
+    <title>PlaySV Ultimate - Media Server</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1a2e">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-512.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 PlaySV Ultimate</h1>
+            <p class="subtitle">PWA Media Server với MPV IPC Integration</p>
+        </header>
+
+        <main>
+            <!-- Video Library Section -->
+            <section class="video-library">
+                <h2>📚 Thư Viện Video</h2>
+                <div class="toolbar">
+                    <button id="refresh-btn" class="btn btn-primary">🔄 Làm mới</button>
+                    <button id="scan-btn" class="btn btn-secondary">🔍 Quét thư mục</button>
+                    <input type="text" id="search-input" placeholder="Tìm kiếm video..." class="search-box">
+                </div>
+                <div id="video-grid" class="video-grid">
+                    <!-- Videos will be loaded here dynamically -->
+                </div>
+            </section>
+
+            <!-- Playlist Section -->
+            <section class="playlist-section">
+                <h2>📋 Playlist</h2>
+                <div id="playlist" class="playlist" data-drop-zone="true">
+                    <p class="empty-message">Kéo thả video vào đây để thêm vào playlist</p>
+                </div>
+                <div class="playlist-controls">
+                    <button id="clear-playlist-btn" class="btn btn-danger">🗑️ Xóa tất cả</button>
+                    <button id="save-playlist-btn" class="btn btn-success">💾 Lưu playlist</button>
+                </div>
+            </section>
+
+            <!-- MPV Player Control -->
+            <section class="player-control">
+                <h2>🎮 Điều Khiển MPV Player</h2>
+                <div class="player-info" id="player-info">
+                    <p class="status">Trạng thái: <span id="player-status">Chưa kết nối</span></p>
+                    <p class="current-video">Đang phát: <span id="current-video">---</span></p>
+                </div>
+                <div class="player-buttons">
+                    <button id="play-btn" class="btn btn-primary">▶️ Phát</button>
+                    <button id="pause-btn" class="btn btn-secondary">⏸️ Tạm dừng</button>
+                    <button id="stop-btn" class="btn btn-danger">⏹️ Dừng</button>
+                    <button id="next-btn" class="btn btn-primary">⏭️ Tiếp theo</button>
+                    <button id="prev-btn" class="btn btn-primary">⏮️ Trước đó</button>
+                </div>
+                <div class="volume-control">
+                    <label for="volume-slider">🔊 Âm lượng:</label>
+                    <input type="range" id="volume-slider" min="0" max="100" value="100" class="slider">
+                    <span id="volume-value">100%</span>
+                </div>
+            </section>
+
+            <!-- Remote Control Section -->
+            <section class="remote-control">
+                <h2>📱 Điều Khiển Từ Xa</h2>
+                <div class="qr-code">
+                    <canvas id="qr-canvas"></canvas>
+                    <p>Quét mã QR để điều khiển từ điện thoại</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 PlaySV Ultimate - PWA Media Server</p>
+            <p>Phát triển với ❤️ bởi Gemini AI</p>
+        </footer>
+    </div>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker đã đăng ký', reg))
+                .catch(err => console.error('Lỗi đăng ký Service Worker', err));
+        }
+    </script>
+    
+    <!-- Main App Script -->
+    <script src="js/app.js"></script>
+</body>
+</html>
